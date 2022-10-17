@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+    margin-top: 0;
+}
+
+.header {
+    color: white;
+    text-align: center;
+    background-color: #f44336;
+    height: 11rem;
+}
+
+h2 {
+    margin: 0;
+    padding-top: 2rem;
+
+}
+
+input[type=text] {
+    outline: none;
+    margin-top: 1.5rem;
+    width: 55%;
+    height: 1.5rem;
+    font-size: 1rem;
+}
+
+#AddBtn {
+    height: 2rem;
+    width: 10%;
+}
+
+.bodyData {
+    text-align: center;
+    background-color: #888;
+}
+
+#dataInput {
+    margin: 0;
+    text-align: left;
+    width: 35%;
+}
+
+#DltBtn {
+    height: 2rem;
+    width: 8%;
+}
+
+#checkBtn{
+    position: absolute;
+    width: 2rem;
+    height: 1.9rem;
+    left: 24.5rem;
+    margin-top: 0;
+}
