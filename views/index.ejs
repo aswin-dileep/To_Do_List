@@ -1,11 +1,12 @@
 <%- include('header.ejs') %>
     <div class="main">
         <div class="header">
-            <h2>My To Do List</h2>
+            <h2><%= Title %></h2>
 
             <form action="/" method="post">
 
-                <input type="text" name="item" value="<%= Data.name %>" placeholder="Title...">
+                <input type="text" name="item" value="<%= Data.name %>" autocomplete="off" placeholder="Title...">
+                <input type="hidden" name="Title" value="<%-Title %>">
                 <button type="submit" id="AddBtn">Add</button>
 
             </form>
@@ -13,15 +14,17 @@
         </div>
         <div class="body">
             <div class="bodyData">
-                <% for(var i=0;i<Data.length;i++) {%>
-                <form action="/delete" method="post">
-                    
-                        <input type="checkbox" id="checkBtn" onclick=underline()>
-                        <input type="text" id="dataInput" value="<%-Data[i].name%>">
-                        <button type="submit" id="DltBtn">Delete</button>
+                <% Data.forEach(function(result){ %>
+                    <% var i=0; %>
+                    <form action="/delete" method="post">
+                       
+                        <input type="text" name="ItemName"  id="dataInput" value="<%-result.name %>">
+                        <button type="submit" name="ListId" value="<%-result._id%>" id="DltBtn">Delete</button>
                       
                 </form>
-                  <% } %>
+              <%  })%>
+              
+                 
             </div>
 
         </div>
