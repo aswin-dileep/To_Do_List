@@ -6,8 +6,7 @@
             <form action="/" method="post">
 
                 <input type="text" name="item" value="<%= Data.name %>" autocomplete="off" placeholder="Title...">
-                <input type="hidden" name="Title" value="<%-Title %>">
-                <button type="submit" id="AddBtn">Add</button>
+                <button type="submit"name="Title" value="<%-Title %>" id="AddBtn">Add</button>
 
             </form>
 
@@ -19,6 +18,7 @@
                     <form action="/delete" method="post">
                        
                         <input type="text" name="ItemName"  id="dataInput" value="<%-result.name %>">
+                        <input type="hidden" name="Title" value="<%-Title%>">
                         <button type="submit" name="ListId" value="<%-result._id%>" id="DltBtn">Delete</button>
                       
                 </form>
