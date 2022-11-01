@@ -3,7 +3,7 @@ const app = express();
 const path = require('path')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser');
-
+const _ =require("lodash");
 //mongodb connections 
 mongoose.connect("mongodb://localhost:27017/ToDoListDB")
 //
@@ -18,10 +18,6 @@ const customSchema = {
 const Item = mongoose.model('item', itemSchema);
 const Custom = mongoose.model('Custom', customSchema);
 
-const sample = new Item({ name: "hello world" })
-const sample1 = new Item({ name: "new data" });
-const samp3 = [sample, sample1];
-
 //seting view engine
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
@@ -35,7 +31,7 @@ app.use(express.static("public"));
 app.get("/", (req, res) => {
     Item.find({}, async (err, result) => {
         if (!err) {
-            res.render('index', { Data: result, Title: "MY To Do List" })
+            res.render('index', { Data: result, Title: "My To Do List" })
         }
     })
 
@@ -44,7 +40,7 @@ app.post("/", (req, res) => {
     const item = req.body.item;
     const Title = req.body.Title;
     const data = new Item({ name: item })
-    if(Title=="MY To Do List"){
+    if(Title=="My To Do List"){
         data.save();
         res.redirect('/')
     }else{
@@ -81,14 +77,14 @@ app.post("/delete", (req, res) => {
 })
 
 app.get("/:customTitle", (req, res) => {
-    const customTitle = req.params.customTitle;
+    const customTitle =_.capitalize(req.params.customTitle);
 
     Custom.findOne({name:customTitle}, (err, result) => {
         if (!err) {
          if(!result){
             const newItem =new Custom({name:customTitle})
             newItem.save();
-            res.redirect("/"+customTitle)
+            res.redirect("/"+ customTitle)
          }else{
             res.render('index', { Title: customTitle, Data: result.item })           
          }
